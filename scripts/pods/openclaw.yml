@@ -1,0 +1,110 @@
+apiVersion: openclaw.rocks/v1alpha1
+kind: OpenClawInstance
+metadata:
+  name: openclaw
+  namespace: roychshao
+spec:
+  image:
+    repository: ghcr.io/openclaw/openclaw
+    tag: "2026.3.13-1"
+    pullPolicy: IfNotPresent
+  envFrom:
+    - secretRef:
+        name: openclaw-secret
+  env:
+    - name: OPENCLAW_CHROMIUM_CDP
+      value: "http://localhost:9222"
+  config:
+    raw:
+      ui:
+        assistant:
+          name: "蝦冰械匠"
+      agents:
+        defaults:
+          model:
+            primary: "selab/openai/gpt-oss-20b"
+          sandbox:
+            mode: "off"
+          # memorySearch:
+          #  provider: "openai"
+          #  model: "DGX/Qwen3-Embedding-0.6B"
+          #  remote:
+          #    baseUrl: "http://litellm-service:4000/v1/"
+          #    apiKey: "${LLM_API_KEY}"
+      models:
+        providers:
+          selab:
+            baseUrl: "${SELAB_LLM_URL}"
+            apiKey: "no-need"
+            api: openai-completions
+            models:
+              - id: "openai/gpt-oss-20b"
+                name: "openai/gpt-oss-20b"
+                reasoning: false
+                input:
+                  - text
+                  - image
+                cost:
+                  input: 0
+                  output: 0
+                  cacheRead: 0
+                  cacheWrite: 0
+                contextWindow: 262144
+                maxTokens: 32768
+      browser:
+        attachOnly: true
+        remoteCdpTimeoutMs: 60000
+        remoteCdpHandshakeTimeoutMs: 60000
+      channels:
+        discord:
+          token: "${DISCORD_BOT_TOKEN}"
+          groupPolicy: allowlist
+          dmPolicy: pairing
+          allowFrom:
+            - "806185841261019186"
+          guilds:
+            "1060151937527447624":
+              requireMention: true
+              channels:
+                "1483831624096546967":
+                  allow: true
+  storage:
+    persistence:
+      enabled: true
+      size: 10Gi
+      storageClass: longhorn-ha
+      orphan: true
+
+#  chromium:
+#    enabled: true
+#    image:
+#      tag: "v2.42.0"
+#    extraArgs:
+#      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+#      - "--window-size=1920,1080"
+#    resources:
+#      requests:
+#        cpu: "250m"
+#        memory: "512Mi"
+#      limits:
+#        cpu: "1000m"
+#        memory: "2Gi"
+
+  security:
+    networkPolicy:
+      enabled: true
+      # additionalEgress:
+      #  - to:
+      #      - namespaceSelector:
+      #          matchLabels:
+      #            kubernetes.io/metadata.name: roychshao
+      #        podSelector:
+      #          matchLabels:
+      #            app: litellm
+      #    ports:
+      #      - protocol: TCP
+      #        port: 4000
+
+  availability:
+    nodeSelector:
+      tier: worker
