@@ -23,6 +23,9 @@ spec:
         defaults:
           model:
             primary: "selab/openai/gpt-oss-120b"
+          models:
+            selab/openai/gpt-oss-20b:
+              alias: openai/gpt-oss-20b
           sandbox:
             mode: "off"
           # memorySearch:
@@ -38,6 +41,19 @@ spec:
             apiKey: "no-need"
             api: openai-completions
             models:
+              - id: "openai/gpt-oss-120b"
+                name: "openai/gpt-oss-120b"
+                reasoning: false
+                input:
+                  - text
+                  - image
+                cost:
+                  input: 0
+                  output: 0
+                  cacheRead: 0
+                  cacheWrite: 0
+                contextWindow: 262144
+                maxTokens: 32768
               - id: "openai/gpt-oss-20b"
                 name: "openai/gpt-oss-20b"
                 reasoning: false
@@ -75,20 +91,20 @@ spec:
       storageClass: longhorn-ha
       orphan: true
 
-#  chromium:
-#    enabled: true
-#    image:
-#      tag: "v2.42.0"
-#    extraArgs:
-#      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
-#      - "--window-size=1920,1080"
-#    resources:
-#      requests:
-#        cpu: "250m"
-#        memory: "512Mi"
-#      limits:
-#        cpu: "1000m"
-#        memory: "2Gi"
+  chromium:
+    enabled: true
+    image:
+      tag: "v2.42.0"
+    extraArgs:
+      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+      - "--window-size=1920,1080"
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "512Mi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
 
   security:
     networkPolicy:
