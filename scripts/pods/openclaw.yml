@@ -24,8 +24,12 @@ spec:
           model:
             primary: "selab/openai/gpt-oss-120b"
           models:
+            selab/openai/gpt-oss-120b:
+              alias: openai/gpt-oss-120b
+              api_key: ${VLLM_API_KEY}
             selab/openai/gpt-oss-20b:
               alias: openai/gpt-oss-20b
+              api_key: ${VLLM_API_KEY}
           sandbox:
             mode: "off"
           # memorySearch:
