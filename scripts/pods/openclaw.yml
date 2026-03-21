@@ -26,10 +26,8 @@ spec:
           models:
             selab/openai/gpt-oss-120b:
               alias: openai/gpt-oss-120b
-              api_key: ${VLLM_API_KEY}
             selab/openai/gpt-oss-20b:
               alias: openai/gpt-oss-20b
-              api_key: ${VLLM_API_KEY}
           sandbox:
             mode: "off"
           # memorySearch:
@@ -42,7 +40,7 @@ spec:
         providers:
           selab:
             baseUrl: "${SELAB_LLM_URL}"
-            apiKey: "no-need"
+            apiKey: "${VLLM_API_KEY}"
             api: openai-completions
             models:
               - id: "openai/gpt-oss-120b"
