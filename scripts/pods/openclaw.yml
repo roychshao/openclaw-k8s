@@ -22,10 +22,10 @@ spec:
       agents:
         defaults:
           model:
-            primary: "selab/openai/gpt-oss-20b"
+            primary: "selab/openai/gpt-oss-120b"
           models:
-            selab/openai/gpt-oss-120b:
-              alias: openai/gpt-oss-120b
+            selab/openai/gpt-oss-20b:
+              alias: openai/gpt-oss-20b
           sandbox:
             mode: "off"
           # memorySearch:
