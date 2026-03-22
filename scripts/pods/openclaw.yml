@@ -128,7 +128,7 @@ spec:
                 contextWindow: 262144
                 maxTokens: 32768
       browser:
-        attachOnly: true
+        attachOnly: false
         profiles:
           chrome:
             cdpUrl: "${OPENCLAW_CHROMIUM_CDP}"
@@ -173,18 +173,18 @@ spec:
 
   security:
     networkPolicy:
-      enabled: false
-      # additionalEgress:
-      #  - to:
-      #      - namespaceSelector:
-      #          matchLabels:
-      #            kubernetes.io/metadata.name: roychshao
-      #        podSelector:
-      #          matchLabels:
-      #            app: litellm
-      #    ports:
-      #      - protocol: TCP
-      #        port: 4000
+      enabled: true
+      additionalEgress:
+       - to:
+           - namespaceSelector:
+               matchLabels:
+                 kubernetes.io/metadata.name: roychshao
+             podSelector:
+               matchLabels:
+                 app: litellm
+         ports:
+           - protocol: TCP
+             port: 4000
 
   availability:
     nodeSelector:
