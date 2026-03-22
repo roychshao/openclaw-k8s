@@ -6,7 +6,7 @@ metadata:
 spec:
   image:
     repository: ghcr.io/openclaw/openclaw
-    tag: "v0.22.2"
+    tag: "latest"
     pullPolicy: IfNotPresent
   envFrom:
     - secretRef:
