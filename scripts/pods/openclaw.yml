@@ -22,16 +22,10 @@ spec:
       agents:
         defaults:
           model:
-            primary: "lite/DGX/Qwen3.5-122B-A10B"
+            primary: "lite/DGX/Qwen3.5-35B-A3B"
           models:
-            lite/DGX/Qwen3.5-122B-A10B:
-              alias: Qwen3.5-122B-A10B
-            lite/DGX/Qwen3.5-122B-A10B-Think:
-              alias: Qwen3.5-122B-A10B-Think
-            lite/DGX/Nemotron-3-Super-120B-A12B-NVFP4:
-              alias: Nemotron-3-Super-120B-A12B
-            lite/gemini/gemini-3.1-flash-lite-preview:
-              alias: Gemini-3.1-Flash-Lite
+            lite/DGX/Qwen3.5-35B-A3B:
+              alias: Qwen3.5-35B-A3B
             selab/openai/gpt-oss-120b:
               alias: openai/gpt-oss-120b
             selab/openai/gpt-oss-20b:
