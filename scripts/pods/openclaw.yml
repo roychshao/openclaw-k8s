@@ -171,10 +171,14 @@ spec:
   chromium:
     enabled: true
     image:
-      tag: "148.0.7730.2"
+      repository: chromedp/headless-shell
+      tag: "stable"
     extraArgs:
-      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/145.0.0.0 Safari/537.36"
+      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
       - "--window-size=1920,1080"
+    extraEnv:
+      - name: DISPLAY
+        value: ":99"
     resources:
       requests:
         cpu: "250m"
