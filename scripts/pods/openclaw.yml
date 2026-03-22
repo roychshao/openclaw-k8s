@@ -179,7 +179,7 @@ spec:
 
   security:
     networkPolicy:
-      enabled: true
+      enabled: false
       # additionalEgress:
       #  - to:
       #      - namespaceSelector:
