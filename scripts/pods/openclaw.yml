@@ -20,6 +20,8 @@ spec:
       - skills
       - config
       - workspaceFiles
+  runtimeDeps:
+    python: true
   config:
     raw:
       ui:
