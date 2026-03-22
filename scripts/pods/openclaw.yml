@@ -6,7 +6,7 @@ metadata:
 spec:
   image:
     repository: ghcr.io/openclaw/openclaw
-    tag: "2026.3.13-1"
+    tag: "v0.22.2"
     pullPolicy: IfNotPresent
   envFrom:
     - secretRef:
@@ -167,33 +167,26 @@ spec:
       size: 10Gi
       storageClass: longhorn-ha
       orphan: true
+
   chromium:
-    command:
-      - /headless-shell/headless-shell
-    args:
-      - --remote-debugging-address=0.0.0.0
-      - --remote-debugging-port=9222
-      - --no-sandbox
-      - --disable-gpu
-      - --disable-software-rasterizer
-  # chromium:
-  #   enabled: true
-  #   image:
-  #     repository: chromedp/headless-shell
-  #     tag: "stable"
-  #   extraArgs:
-  #     - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
-  #     - "--window-size=1920,1080"
-  #   extraEnv:
-  #     - name: DISPLAY
-  #       value: ":99"
-  #   resources:
-  #     requests:
-  #       cpu: "250m"
-  #       memory: "512Mi"
-  #     limits:
-  #       cpu: "1000m"
-  #       memory: "2Gi"
+    enabled: true
+    image:
+      repository: chromedp/headless-shell  # default
+      tag: "stable"
+    resources:
+      requests:
+        cpu: "250m"
+        memory: "512Mi"
+      limits:
+        cpu: "1000m"
+        memory: "2Gi"
+    # Pass extra flags to the Chromium process (appended to built-in anti-bot defaults)
+    extraArgs:
+      - "--user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36"
+    # Inject extra environment variables into the sidecar
+    extraEnv:
+      - name: DISPLAY
+        value: ":99"
 
   security:
     networkPolicy:
