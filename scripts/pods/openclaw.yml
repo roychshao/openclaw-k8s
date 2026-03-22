@@ -178,7 +178,7 @@ spec:
        - to:
            - namespaceSelector:
                matchLabels:
-                 kubernetes.io/metadata.name: roychshao
+                 kubernetes.io/metadata.name: andyjjrt
              podSelector:
                matchLabels:
                  app: litellm
