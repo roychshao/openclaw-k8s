@@ -47,7 +47,7 @@ spec:
       models:
         providers:
           lite:
-            baseUrl: "http://litellm-service:4000/v1"
+            baseUrl: "http://litellm-service.andyjjrt.svc.cluster.local:4000/v1"
             apiKey: "${LITE_LLM_API_KEY}"
             api: openai-completions
             models:
