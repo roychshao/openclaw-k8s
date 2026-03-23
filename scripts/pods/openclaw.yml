@@ -6,7 +6,7 @@ metadata:
 spec:
   image:
     repository: ghcr.io/openclaw/openclaw
-    tag: "latest"
+    tag: "2026.3.13-1"
     pullPolicy: IfNotPresent
   envFrom:
     - secretRef:
@@ -168,8 +168,8 @@ spec:
       storageClass: longhorn-ha
       orphan: true
 
-  # chromium:
-  #   enabled: true
+  chromium:
+    enabled: true
   #   image:
   #     repository: chromedp/headless-shell  # default
   #     tag: "stable"
