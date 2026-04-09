@@ -30,7 +30,7 @@ spec:
       agents:
         defaults:
           model:
-            primary: "lite/DGX/Qwen3.5-35B-A3B"
+            primary: "lite/DGX/gemma-4-26B-A4B-it"
           models:
             lite/DGX/Qwen3.5-35B-A3B:
               alias: Qwen3.5-35B-A3B
